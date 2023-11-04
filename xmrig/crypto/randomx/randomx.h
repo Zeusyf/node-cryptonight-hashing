@@ -139,7 +139,7 @@ struct RandomX_ConfigurationBase
 	uint32_t ScratchpadL3Mask_Calculated;
 	uint32_t ScratchpadL3Mask64_Calculated;
 
-#if XMRIG_ARM == 8
+#if defined(XMRIG_ARMv8)
 	uint32_t Log2_ScratchpadL1;
 	uint32_t Log2_ScratchpadL2;
 	uint32_t Log2_ScratchpadL3;
@@ -154,7 +154,6 @@ struct RandomX_ConfigurationArqma : public RandomX_ConfigurationBase { RandomX_C
 struct RandomX_ConfigurationSafex : public RandomX_ConfigurationBase { RandomX_ConfigurationSafex(); };
 struct RandomX_ConfigurationKeva : public RandomX_ConfigurationBase { RandomX_ConfigurationKeva(); };
 struct RandomX_ConfigurationScala : public RandomX_ConfigurationBase { RandomX_ConfigurationScala(); };
-struct RandomX_ConfigurationGraft : public RandomX_ConfigurationBase { RandomX_ConfigurationGraft(); };
 
 extern RandomX_ConfigurationMonero RandomX_MoneroConfig;
 extern RandomX_ConfigurationWownero RandomX_WowneroConfig;
@@ -162,7 +161,6 @@ extern RandomX_ConfigurationArqma RandomX_ArqmaConfig;
 extern RandomX_ConfigurationSafex RandomX_SafexConfig;
 extern RandomX_ConfigurationKeva RandomX_KevaConfig;
 extern RandomX_ConfigurationScala RandomX_ScalaConfig;
-extern RandomX_ConfigurationGraft RandomX_GraftConfig;
 
 extern RandomX_ConfigurationBase RandomX_CurrentConfig;
 
@@ -177,6 +175,7 @@ void randomx_apply_config(const T& config)
 
 void randomx_set_scratchpad_prefetch_mode(int mode);
 void randomx_set_huge_pages_jit(bool hugePages);
+void randomx_set_optimized_dataset_init(int value);
 
 #if defined(__cplusplus)
 extern "C" {
